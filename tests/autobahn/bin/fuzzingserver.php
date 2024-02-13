@@ -1,10 +1,10 @@
 <?php
-use Ratchet\ConnectionInterface;
+use helpers\Ratchet\ConnectionInterface;
 
     require dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
 
-class BinaryEcho implements \Ratchet\WebSocket\MessageComponentInterface {
-    public function onMessage(ConnectionInterface $from, \Ratchet\RFC6455\Messaging\MessageInterface $msg) {
+class BinaryEcho implements \helpers\Ratchet\WebSocket\MessageComponentInterface {
+    public function onMessage(ConnectionInterface $from, \helpers\Ratchet\RFC6455\Messaging\MessageInterface $msg) {
         $from->send($msg);
     }
 
@@ -24,13 +24,13 @@ class BinaryEcho implements \Ratchet\WebSocket\MessageComponentInterface {
     $loop = new $impl;
     $sock = new React\Socket\Server('0.0.0.0:' . $port, $loop);
 
-    $wsServer = new Ratchet\WebSocket\WsServer(new BinaryEcho);
+    $wsServer = new helpers\Ratchet\WebSocket\WsServer(new BinaryEcho);
     // This is enabled to test https://github.com/ratchetphp/Ratchet/issues/430
     // The time is left at 10 minutes so that it will not try to every ping anything
     // This causes the Ratchet server to crash on test 2.7
     $wsServer->enableKeepAlive($loop, 600);
 
-    $app = new Ratchet\Http\HttpServer($wsServer);
+    $app = new helpers\Ratchet\Http\HttpServer($wsServer);
 
-    $server = new Ratchet\Server\IoServer($app, $sock, $loop);
+    $server = new helpers\Ratchet\Server\IoServer($app, $sock, $loop);
     $server->run();

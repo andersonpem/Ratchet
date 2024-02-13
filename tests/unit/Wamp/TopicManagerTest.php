@@ -1,5 +1,5 @@
 <?php
-namespace Ratchet\Wamp;
+namespace helpers\Ratchet\Wamp;
 
 /**
  * @covers Ratchet\Wamp\TopicManager
@@ -8,12 +8,12 @@ class TopicManagerTest extends \PHPUnit_Framework_TestCase {
     private $mock;
 
     /**
-     * @var \Ratchet\Wamp\TopicManager
+     * @var \helpers\Ratchet\Wamp\TopicManager
      */
     private $mngr;
 
     /**
-     * @var \Ratchet\ConnectionInterface
+     * @var \helpers\Ratchet\ConnectionInterface
      */
     private $conn;
 

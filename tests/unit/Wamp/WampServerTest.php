@@ -1,6 +1,6 @@
 <?php
-namespace Ratchet\Wamp;
-use Ratchet\AbstractMessageComponentTestCase;
+namespace helpers\Ratchet\Wamp;
+use helpers\Ratchet\AbstractMessageComponentTestCase;
 
 /**
  * @covers Ratchet\Wamp\WampServer

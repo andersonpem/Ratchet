@@ -1,6 +1,6 @@
 <?php
-namespace Ratchet\Server;
-use Ratchet\Server\IpBlackList;
+namespace helpers\Ratchet\Server;
+use helpers\Ratchet\Server\IpBlackList;
 
 /**
  * @covers Ratchet\Server\IpBlackList

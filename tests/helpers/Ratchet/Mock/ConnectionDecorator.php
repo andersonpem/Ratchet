@@ -1,5 +1,5 @@
 <?php
-namespace Ratchet\Mock;
+namespace helpers\Ratchet\Mock;
 use Ratchet\AbstractConnectionDecorator;
 
 class ConnectionDecorator extends AbstractConnectionDecorator {

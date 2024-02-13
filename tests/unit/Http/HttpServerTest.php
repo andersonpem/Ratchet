@@ -1,6 +1,6 @@
 <?php
-namespace Ratchet\Http;
-use Ratchet\AbstractMessageComponentTestCase;
+namespace helpers\Ratchet\Http;
+use helpers\Ratchet\AbstractMessageComponentTestCase;
 
 /**
  * @covers Ratchet\Http\HttpServer

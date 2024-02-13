@@ -1,6 +1,6 @@
 <?php
-namespace Ratchet\Session\Serialize;
-use Ratchet\Session\Serialize\PhpHandler;
+namespace helpers\Ratchet\Session\Serialize;
+use helpers\Ratchet\Session\Serialize\PhpHandler;
 
 /**
  * @covers Ratchet\Session\Serialize\PhpHandler

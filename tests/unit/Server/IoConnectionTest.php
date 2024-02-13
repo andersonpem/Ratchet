@@ -1,6 +1,6 @@
 <?php
-namespace Ratchet\Application\Server;
-use Ratchet\Server\IoConnection;
+namespace helpers\Ratchet\Application\Server;
+use helpers\Ratchet\Server\IoConnection;
 
 /**
  * @covers Ratchet\Server\IoConnection

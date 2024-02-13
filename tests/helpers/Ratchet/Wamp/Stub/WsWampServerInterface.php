@@ -1,7 +1,5 @@
 <?php
-namespace Ratchet\Wamp\Stub;
-use Ratchet\WebSocket\WsServerInterface;
-use Ratchet\Wamp\WampServerInterface;
+namespace helpers\Ratchet\Wamp\Stub;
 
 interface WsWampServerInterface extends WsServerInterface, WampServerInterface {
 }

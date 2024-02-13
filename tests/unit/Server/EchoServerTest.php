@@ -1,6 +1,6 @@
 <?php
-namespace Ratchet\Server;
-use Ratchet\Server\EchoServer;
+namespace helpers\Ratchet\Server;
+use helpers\Ratchet\Server\EchoServer;
 
 class EchoServerTest extends \PHPUnit_Framework_TestCase {
     protected $_conn;

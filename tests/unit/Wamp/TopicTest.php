@@ -1,5 +1,5 @@
 <?php
-namespace Ratchet\Wamp;
+namespace helpers\Ratchet\Wamp;
 
 /**
  * @covers Ratchet\Wamp\Topic

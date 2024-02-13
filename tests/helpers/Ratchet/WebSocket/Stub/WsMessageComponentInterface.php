@@ -1,7 +1,7 @@
 <?php
-namespace Ratchet\WebSocket\Stub;
-use Ratchet\MessageComponentInterface;
-use Ratchet\WebSocket\WsServerInterface;
+namespace helpers\Ratchet\WebSocket\Stub;
+use helpers\Ratchet\MessageComponentInterface;
+use helpers\Ratchet\WebSocket\WsServerInterface;
 
 interface WsMessageComponentInterface extends MessageComponentInterface, WsServerInterface {
 }

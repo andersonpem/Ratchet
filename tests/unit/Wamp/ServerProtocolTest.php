@@ -1,12 +1,12 @@
 <?php
-namespace Ratchet\Wamp;
-use Ratchet\Mock\Connection;
-use Ratchet\Mock\WampComponent as TestComponent;
+namespace helpers\Ratchet\Wamp;
+use helpers\Ratchet\Mock\Connection;
+use helpers\Ratchet\Mock\WampComponent as TestComponent;
 
 /**
- * @covers \Ratchet\Wamp\ServerProtocol
- * @covers \Ratchet\Wamp\WampServerInterface
- * @covers \Ratchet\Wamp\WampConnection
+ * @covers \helpers\Ratchet\Wamp\ServerProtocol
+ * @covers \helpers\Ratchet\Wamp\WampServerInterface
+ * @covers \helpers\Ratchet\Wamp\WampConnection
  */
 class ServerProtocolTest extends \PHPUnit_Framework_TestCase {
     protected $_comp;

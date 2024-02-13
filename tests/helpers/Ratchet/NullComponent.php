@@ -1,14 +1,15 @@
 <?php
-namespace Ratchet;
+namespace helpers\Ratchet;
+
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
-use Ratchet\WebSocket\WsServerInterface;
 use Ratchet\Wamp\WampServerInterface;
+use Ratchet\WebSocket\WsServerInterface;
 
 class NullComponent implements MessageComponentInterface, WsServerInterface, WampServerInterface {
     public function onOpen(ConnectionInterface $conn) {}
 
-    public function onMessage(ConnectionInterface $conn, $msg) {}
+    public function onMessage(ConnectionInterface $from, $msg) {}
 
     public function onClose(ConnectionInterface $conn) {}
 

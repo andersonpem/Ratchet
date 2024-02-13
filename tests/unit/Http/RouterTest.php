@@ -1,6 +1,6 @@
 <?php
-namespace Ratchet\Http;
-use Ratchet\WebSocket\WsServerInterface;
+namespace helpers\Ratchet\Http;
+use helpers\Ratchet\WebSocket\WsServerInterface;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 use Symfony\Component\Routing\RequestContext;
