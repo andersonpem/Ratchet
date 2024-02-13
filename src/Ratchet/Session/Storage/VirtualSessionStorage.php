@@ -25,7 +25,8 @@ class VirtualSessionStorage extends NativeSessionStorage {
     /**
      * {@inheritdoc}
      */
-    public function start() {
+    public function start(): bool
+    {
         if ($this->started && !$this->closed) {
             return true;
         }
@@ -51,14 +52,16 @@ class VirtualSessionStorage extends NativeSessionStorage {
     /**
      * {@inheritdoc}
      */
-    public function regenerate($destroy = false, $lifetime = null) {
+    public function regenerate($destroy = false, $lifetime = null): bool
+    {
         // .. ?
     }
 
     /**
      * {@inheritdoc}
      */
-    public function save() {
+    public function save(): void
+    {
         // get the data from the bags?
         // serialize the data
         // save the data using the saveHandler
@@ -74,7 +77,8 @@ class VirtualSessionStorage extends NativeSessionStorage {
     /**
      * {@inheritdoc}
      */
-    public function setSaveHandler($saveHandler = null) {
+    public function setSaveHandler($saveHandler = null): void
+    {
         if (!($saveHandler instanceof \SessionHandlerInterface)) {
             throw new \InvalidArgumentException('Handler must be instance of SessionHandlerInterface');
         }

@@ -8,7 +8,7 @@ class Connection implements ConnectionInterface {
       , 'close' => false
     );
 
-    public $remoteAddress = '127.0.0.1';
+    public string $remoteAddress = '127.0.0.1';
 
     public function send($data) {
         $this->last[__FUNCTION__] = $data;

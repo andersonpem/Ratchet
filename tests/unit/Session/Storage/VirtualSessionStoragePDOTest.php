@@ -1,23 +1,22 @@
 <?php
-namespace helpers\Ratchet\Session\Storage;
-use helpers\Ratchet\Session\Serialize\PhpHandler;
+namespace unit\Session\Storage;
+use PHPUnit\Framework\TestCase;
+use Ratchet\Session\Storage\VirtualSessionStorage;
+use Ratchet\Session\Serialize\PhpHandler;
 use Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler;
 
-class VirtualSessionStoragePDOTest extends \PHPUnit_Framework_TestCase {
+class VirtualSessionStoragePDOTest extends TestCase {
     /**
      * @var VirtualSessionStorage
      */
-    protected $_virtualSessionStorage;
+    protected VirtualSessionStorage $_virtualSessionStorage;
 
-    protected $_pathToDB;
+    protected string|false $_pathToDB;
 
-    public function setUp() {
-        if (!extension_loaded('PDO') || !extension_loaded('pdo_sqlite')) {
-            return $this->markTestSkipped('Session test requires PDO and pdo_sqlite');
-        }
-
+    public function setUp(): void
+    {
         $schema = <<<SQL
 CREATE TABLE `sessions` (
     `sess_id` VARBINARY(128) NOT NULL PRIMARY KEY,
@@ -41,7 +40,8 @@ SQL;
         $this->_virtualSessionStorage->registerBag(new AttributeBag());
     }
 
-    public function tearDown() {
+    public function tearDown(): void
+    {
         unlink($this->_pathToDB);
     }
 

@@ -2,18 +2,21 @@
 namespace helpers\Ratchet\Wamp;
 use helpers\Ratchet\Mock\Connection;
 use helpers\Ratchet\Mock\WampComponent as TestComponent;
+use PHPUnit\Framework\TestCase;
+use Ratchet\Wamp\ServerProtocol;
 
 /**
  * @covers \helpers\Ratchet\Wamp\ServerProtocol
  * @covers \helpers\Ratchet\Wamp\WampServerInterface
  * @covers \helpers\Ratchet\Wamp\WampConnection
  */
-class ServerProtocolTest extends \PHPUnit_Framework_TestCase {
+class ServerProtocolTest extends TestCase {
     protected $_comp;
 
     protected $_app;
 
-    public function setUp() {
+    public function setUp(): void
+    {
         $this->_app  = new TestComponent;
         $this->_comp = new ServerProtocol($this->_app);
     }
@@ -241,7 +244,7 @@ class ServerProtocolTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testWampOnMessageApp() {
-        $app = $this->getMock('\\Ratchet\\Wamp\\WampServerInterface');
+        $app = $this->createMock('\\Ratchet\\Wamp\\WampServerInterface');
         $wamp = new ServerProtocol($app);
 
         $this->assertContains('wamp', $wamp->getSubProtocols());

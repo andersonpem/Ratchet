@@ -1,12 +1,14 @@
 <?php
-namespace helpers\Ratchet\Http;
+namespace unit\Http;
+
 use helpers\Ratchet\AbstractMessageComponentTestCase;
+use Ratchet\Http\HttpServer;
 
 /**
- * @covers Ratchet\Http\HttpServer
+ * @covers HttpServer
  */
 class HttpServerTest extends AbstractMessageComponentTestCase {
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->_conn->httpHeadersReceived = true;
     }

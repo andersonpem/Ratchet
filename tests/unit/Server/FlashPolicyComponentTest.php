@@ -1,15 +1,17 @@
 <?php
-namespace helpers\Ratchet\Application\Server;
-use helpers\Ratchet\Server\FlashPolicy;
+namespace unit\Server;
+use PHPUnit\Framework\TestCase;
+use Ratchet\Server\FlashPolicy;
 
 /**
- * @covers Ratchet\Server\FlashPolicy
+ * @covers FlashPolicy
  */
-class FlashPolicyTest extends \PHPUnit_Framework_TestCase {
+class FlashPolicyComponentTest extends TestCase {
 
-    protected $_policy;
+    protected FlashPolicy $_policy;
 
-    public function setUp() {
+    public function setUp(): void
+    {
         $this->_policy = new FlashPolicy();
     }
 
@@ -123,7 +125,7 @@ class FlashPolicyTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testErrorClosesConnection() {
-        $conn = $this->getMock('\\Ratchet\\ConnectionInterface');
+        $conn = $this->createMock('\\Ratchet\\ConnectionInterface');
         $conn->expects($this->once())->method('close');
 
         $this->_policy->onError($conn, new \Exception);
@@ -132,7 +134,7 @@ class FlashPolicyTest extends \PHPUnit_Framework_TestCase {
     public function testOnMessageSendsString() {
         $this->_policy->addAllowedAccess('*', '*');
 
-        $conn = $this->getMock('\\Ratchet\\ConnectionInterface');
+        $conn = $this->createMock('\\Ratchet\\ConnectionInterface');
         $conn->expects($this->once())->method('send')->with($this->isType('string'));
 
         $this->_policy->onMessage($conn, ' ');
@@ -140,13 +142,16 @@ class FlashPolicyTest extends \PHPUnit_Framework_TestCase {
 
     public function testOnOpenExists() {
         $this->assertTrue(method_exists($this->_policy, 'onOpen'));
-        $conn = $this->getMock('\Ratchet\ConnectionInterface');
+        $conn = $this->createMock('\Ratchet\ConnectionInterface');
         $this->_policy->onOpen($conn);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testOnCloseExists() {
         $this->assertTrue(method_exists($this->_policy, 'onClose'));
-        $conn = $this->getMock('\Ratchet\ConnectionInterface');
+        $conn = $this->createMock('\Ratchet\ConnectionInterface');
         $this->_policy->onClose($conn);
     }
 }

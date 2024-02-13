@@ -1,15 +1,17 @@
 <?php
-namespace helpers\Ratchet\Http;
+namespace unit\Http;
 use helpers\Ratchet\AbstractMessageComponentTestCase;
+use Ratchet\Http\OriginCheck;
 
 /**
- * @covers Ratchet\Http\OriginCheck
+ * @covers OriginCheck
  */
 class OriginCheckTest extends AbstractMessageComponentTestCase {
     protected $_reqStub;
 
-    public function setUp() {
-        $this->_reqStub = $this->getMock('Psr\Http\Message\RequestInterface');
+    public function setUp(): void
+    {
+        $this->_reqStub = $this->createMock('Psr\Http\Message\RequestInterface');
         $this->_reqStub->expects($this->any())->method('getHeader')->will($this->returnValue(['localhost']));
 
         parent::setUp();

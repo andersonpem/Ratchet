@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class AbstractMessageComponentTestCase extends TestCase {
     protected $_app;
-    protected $_serv;
+    protected mixed $_serv;
     protected $_conn;
 
     abstract public function getConnectionClassString();
@@ -15,10 +15,10 @@ abstract class AbstractMessageComponentTestCase extends TestCase {
 
     public function setUp(): void
     {
-        $this->_app  = $this->getMock($this->getComponentClassString());
+        $this->_app  = $this->createMock($this->getComponentClassString());
         $decorator   = $this->getDecoratorClassString();
         $this->_serv = new $decorator($this->_app);
-        $this->_conn = $this->getMock('\Ratchet\ConnectionInterface');
+        $this->_conn = $this->createMock('\Ratchet\ConnectionInterface');
 
         $this->doOpen($this->_conn);
     }
@@ -33,7 +33,7 @@ abstract class AbstractMessageComponentTestCase extends TestCase {
 
     public function testOpen() {
         $this->_app->expects($this->once())->method('onOpen')->with($this->isExpectedConnection());
-        $this->doOpen($this->getMock('\Ratchet\ConnectionInterface'));
+        $this->doOpen($this->createMock('\Ratchet\ConnectionInterface'));
     }
 
     public function testOnClose() {

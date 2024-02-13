@@ -1,13 +1,17 @@
 <?php
-namespace helpers\Ratchet\Http;
+namespace unit\Http;
+
+use PHPUnit\Framework\TestCase;
+use Ratchet\Http\HttpRequestParser;
 
 /**
- * @covers Ratchet\Http\HttpRequestParser
+ * @covers HttpRequestParser
  */
-class HttpRequestParserTest extends \PHPUnit_Framework_TestCase {
-    protected $parser;
+class HttpRequestParserTest extends TestCase {
+    protected HttpRequestParser $parser;
 
-    public function setUp() {
+    public function setUp(): void
+    {
         $this->parser = new HttpRequestParser;
     }
 
@@ -30,7 +34,7 @@ class HttpRequestParserTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testBufferOverflowResponse() {
-        $conn = $this->getMock('\Ratchet\ConnectionInterface');
+        $conn = $this->createMock('\Ratchet\ConnectionInterface');
 
         $this->parser->maxSize = 20;
 
@@ -42,7 +46,7 @@ class HttpRequestParserTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testReturnTypeIsRequest() {
-        $conn = $this->getMock('\Ratchet\ConnectionInterface');
+        $conn = $this->createMock('\Ratchet\ConnectionInterface');
         $return = $this->parser->onMessage($conn, "GET / HTTP/1.1\r\nHost: socketo.me\r\n\r\n");
 
         $this->assertInstanceOf('\Psr\Http\Message\RequestInterface', $return);

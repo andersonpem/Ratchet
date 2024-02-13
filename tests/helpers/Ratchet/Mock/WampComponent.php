@@ -11,7 +11,7 @@ class WampComponent implements WampServerInterface, WsServerInterface {
 
     public array $protocols = array();
 
-    public function getSubProtocols() {
+    public function getSubProtocols() : array {
         return $this->protocols;
     }
 

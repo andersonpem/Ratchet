@@ -1,6 +1,7 @@
 <?php
 namespace helpers\Ratchet\Wamp;
 use helpers\Ratchet\AbstractMessageComponentTestCase;
+use PHPUnit\Framework\Constraint\IsInstanceOf;
 
 /**
  * @covers Ratchet\Wamp\WampServer
@@ -23,7 +24,7 @@ class WampServerTest extends AbstractMessageComponentTestCase {
 
         $this->_app->expects($this->once())->method('onPublish')->with(
             $this->isExpectedConnection()
-          , new \PHPUnit_Framework_Constraint_IsInstanceOf('\Ratchet\Wamp\Topic')
+          , new IsInstanceOf('\Ratchet\Wamp\Topic')
           , $published
           , array()
           , array()

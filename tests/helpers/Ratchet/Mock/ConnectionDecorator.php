@@ -3,7 +3,7 @@ namespace helpers\Ratchet\Mock;
 use Ratchet\AbstractConnectionDecorator;
 
 class ConnectionDecorator extends AbstractConnectionDecorator {
-    public $last = array(
+    public array $last = array(
         'write' => ''
       , 'end'   => false
     );

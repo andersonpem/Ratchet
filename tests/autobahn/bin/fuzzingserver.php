@@ -1,11 +1,17 @@
 <?php
-use helpers\Ratchet\ConnectionInterface;
+use helpers\Ratchet\Mock\Connection;
+use Ratchet\WebSocket\MessageComponentInterface;
+use Ratchet\ConnectionInterface;
+use Ratchet\RFC6455\Messaging\MessageInterface;
+use Ratchet\WebSocket\WsServer;
+use Ratchet\http\HttpServer;
+use Ratchet\Server\IoServer;
 
-    require dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+require dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
 
-class BinaryEcho implements \helpers\Ratchet\WebSocket\MessageComponentInterface {
-    public function onMessage(ConnectionInterface $from, \helpers\Ratchet\RFC6455\Messaging\MessageInterface $msg) {
-        $from->send($msg);
+class BinaryEcho implements MessageComponentInterface{
+    public function onMessage(ConnectionInterface $conn, MessageInterface $msg) {
+        $conn->send($msg);
     }
 
     public function onOpen(ConnectionInterface $conn) {
@@ -22,15 +28,15 @@ class BinaryEcho implements \helpers\Ratchet\WebSocket\MessageComponentInterface
     $impl = sprintf('React\EventLoop\%sLoop', $argc > 2 ? $argv[2] : 'StreamSelect');
 
     $loop = new $impl;
-    $sock = new React\Socket\Server('0.0.0.0:' . $port, $loop);
+    $sock = new React\Socket\SocketServer('0.0.0.0:' . $port, $loop);
 
-    $wsServer = new helpers\Ratchet\WebSocket\WsServer(new BinaryEcho);
+    $wsServer = new WsServer(new BinaryEcho);
     // This is enabled to test https://github.com/ratchetphp/Ratchet/issues/430
     // The time is left at 10 minutes so that it will not try to every ping anything
     // This causes the Ratchet server to crash on test 2.7
     $wsServer->enableKeepAlive($loop, 600);
 
-    $app = new helpers\Ratchet\Http\HttpServer($wsServer);
+    $app = new HttpServer($wsServer);
 
-    $server = new helpers\Ratchet\Server\IoServer($app, $sock, $loop);
+    $server = new IoServer($app, $sock, $loop);
     $server->run();
